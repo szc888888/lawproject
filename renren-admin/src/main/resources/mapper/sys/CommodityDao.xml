@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.sys.dao.CommodityDao">
+
+	<!-- 查询所有的产品设置 -->
+    <select id="getCommodityList" resultType="io.renren.modules.sys.entity.CommodityEntity">
+		select * from tb_commodity
+    </select>
+
+
+</mapper>

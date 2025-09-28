@@ -1,0 +1,11 @@
+# 排除所有 target 目录（Maven/Gradle 构建目录）
+target/
+
+# 其他常见 Java 项目忽略项（可选但推荐）
+*.class
+*.jar
+*.war
+*.ear
+.idea/
+*.iml
+.DS_Store

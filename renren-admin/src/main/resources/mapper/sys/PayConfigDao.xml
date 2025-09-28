@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.sys.dao.PayConfigDao">
+
+    <resultMap type="io.renren.modules.sys.entity.PayConfigEntity" id="payConfigMap">
+        <result property="id" column="id"/>
+        <result property="appAppidCode" column="app_appid_code"/>
+        <result property="appSecretCode" column="app_secret_code"/>
+        <result property="appId" column="app_id"/>
+        <result property="appSecret" column="app_secret"/>
+        <result property="privateKey" column="private_key"/>
+        <result property="publicKey" column="public_key"/>
+        <result property="payUrl" column="pay_url"/>
+        <result property="payUrlMontage" column="pay_url_montage"/>
+        <result property="notifyUrl" column="notify_url"/>
+        <result property="merchantsName" column="merchants_name"/>
+        <result property="payName" column="pay_name"/>
+        <result property="type" column="type"/>
+        <result property="status" column="status"/>
+        <result property="amountSuccess" column="amount_success"/>
+        <result property="remark" column="remark"/>
+        <result property="callName" column="call_name"/>
+        <result property="icon" column="icon"/>
+        <result property="time" column="time"/>
+    </resultMap>
+
+
+</mapper>

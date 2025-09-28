@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.poster.dao.PosterDao">
+
+    <resultMap type="io.renren.modules.poster.entity.PosterEntity" id="posterMap">
+        <result property="id" column="id"/>
+        <result property="posterImg" column="poster_img"/>
+        <result property="logo" column="logo"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+    </resultMap>
+    <select id="getPoster" resultType="io.renren.modules.poster.entity.PosterEntity">
+        select * from tb_poster limit 1
+    </select>
+
+
+</mapper>

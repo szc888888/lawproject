@@ -1,0 +1,25 @@
+INSERT INTO `sys_menu` (`id`, `pid`, `name`, `url`, `permissions`, `menu_type`, `icon`, `sort`, `creator`, `create_date`, `updater`, `update_date`) VALUES (1670307246453514241, 0, 'PDF-DOC管理', '', '', 0, 'icon-control', 0, 1067246875800000001, '2023-06-18 13:47:35', 1067246875800000001, '2023-06-18 13:47:35');
+-- 菜单初始SQL
+INSERT INTO sys_menu(id, pid, name, url, permissions, menu_type, icon, sort, creator, create_date, updater, update_date)VALUES (1670307833041313794, 1670307246453514241, 'PDF-DOC', 'pdfdoc/pdfdoc', NULL, 0, 'icon-desktop', 0, 1067246875800000001, now(), 1067246875800000001, now());
+INSERT INTO sys_menu(id, pid, name, url, permissions, menu_type, icon, sort, creator, create_date, updater, update_date) VALUES (1670307833041313795, 1670307833041313794, '查看', NULL, 'pdfdoc:pdfdoc:page,pdfdoc:pdfdoc:info', 1, NULL, 0, 1067246875800000001, now(), 1067246875800000001, now());
+INSERT INTO sys_menu(id, pid, name, url, permissions, menu_type, icon, sort, creator, create_date, updater, update_date) VALUES (1670307833041313796, 1670307833041313794, '新增', NULL, 'pdfdoc:pdfdoc:save', 1, NULL, 1, 1067246875800000001, now(), 1067246875800000001, now());
+INSERT INTO sys_menu(id, pid, name, url, permissions, menu_type, icon, sort, creator, create_date, updater, update_date) VALUES (1670307833041313797, 1670307833041313794, '修改', NULL, 'pdfdoc:pdfdoc:update', 1, NULL, 2, 1067246875800000001, now(), 1067246875800000001, now());
+INSERT INTO sys_menu(id, pid, name, url, permissions, menu_type, icon, sort, creator, create_date, updater, update_date) VALUES (1670307833041313798, 1670307833041313794, '删除', NULL, 'pdfdoc:pdfdoc:delete', 1, NULL, 3, 1067246875800000001, now(), 1067246875800000001, now());
+INSERT INTO sys_menu(id, pid, name, url, permissions, menu_type, icon, sort, creator, create_date, updater, update_date) VALUES (1670307833041313799, 1670307833041313794, '导出', NULL, 'pdfdoc:pdfdoc:export', 1, NULL, 4, 1067246875800000001, now(), 1067246875800000001, now());
+
+-- 参数表数据
+INSERT INTO `sys_params` (`id`, `param_code`, `param_value`, `param_type`, `remark`, `creator`, `create_date`, `updater`, `update_date`) VALUES (1668857428380172289, 'SANFANG_CHAT_GPT_URL', 'https://api.chatanywhere.com.cn/', 1, '三方的GPT代理，必须使用他自己的三方KEY', 1067246875800000001, '2023-06-14 13:46:31', 1067246875800000001, '2023-06-14 13:46:31');
+INSERT INTO `sys_params` (`id`, `param_code`, `param_value`, `param_type`, `remark`, `creator`, `create_date`, `updater`, `update_date`) VALUES (1668859710731661314, 'GPT4_PLATFROM', '0', 1, 'GPT4默认走哪个平台代理（0官方1三方，走三方必须使用三方的key）', 1067246875800000001, '2023-06-14 13:55:36', 1067246875800000001, '2023-06-14 17:30:08');
+INSERT INTO `sys_params` (`id`, `param_code`, `param_value`, `param_type`, `remark`, `creator`, `create_date`, `updater`, `update_date`) VALUES (1668909460445196289, 'COUNT_VIP_3', '100', 1, 'VIP用户每日GPT3免费问答次数', 1067246875800000001, '2023-06-14 17:13:17', 1067246875800000001, '2023-06-14 17:13:17');
+INSERT INTO `sys_params` (`id`, `param_code`, `param_value`, `param_type`, `remark`, `creator`, `create_date`, `updater`, `update_date`) VALUES (1668909580842692609, 'COUNT_VIP_4', '2', 1, 'VIP用户每日GPT4免费问答次数', 1067246875800000001, '2023-06-14 17:13:46', 1067246875800000001, '2023-06-14 17:29:51');
+INSERT INTO `sys_params` (`id`, `param_code`, `param_value`, `param_type`, `remark`, `creator`, `create_date`, `updater`, `update_date`) VALUES (1668909752544915457, 'COUNT_USER_3', '25', 1, '普通用户GPT3每日免费问答次数', 1067246875800000001, '2023-06-14 17:14:27', 1067246875800000001, '2023-06-14 17:14:27');
+INSERT INTO `sys_params` (`id`, `param_code`, `param_value`, `param_type`, `remark`, `creator`, `create_date`, `updater`, `update_date`) VALUES (1668909886628425729, 'COUNT_USER_4', '1', 1, '普通用户每日GPT4免费问答次数', 1067246875800000001, '2023-06-14 17:14:58', 1067246875800000001, '2023-06-14 17:14:58');
+INSERT INTO `sys_params` (`id`, `param_code`, `param_value`, `param_type`, `remark`, `creator`, `create_date`, `updater`, `update_date`) VALUES (1668910063376396289, 'MONEY3', '1', 1, 'GPT3单次问答费用', 1067246875800000001, '2023-06-14 17:15:41', 1067246875800000001, '2023-06-14 17:15:41');
+INSERT INTO `sys_params` (`id`, `param_code`, `param_value`, `param_type`, `remark`, `creator`, `create_date`, `updater`, `update_date`) VALUES (1668910137930149890, 'MONEY4', '5', 1, 'GPT4单次问答费用', 1067246875800000001, '2023-06-14 17:15:58', 1067246875800000001, '2023-06-14 17:15:58');
+
+-- 新增的字段
+ALTER TABLE tb_gpt_key ADD COLUMN type int(2) DEFAULT '0' COMMENT 'KEY类型（0官方3.5 1官方4.0 2三方4.0）';
+ALTER TABLE tb_question_answer ADD COLUMN ques_tokens bigint(10) DEFAULT NULL COMMENT '问题的tokens';
+ALTER TABLE tb_question_answer ADD COLUMN ans_tokens bigint(10) DEFAULT NULL COMMENT '回答的tokens';
+ALTER TABLE tb_question_answer ADD COLUMN all_tokens bigint(10) DEFAULT NULL COMMENT '总的tokens';
+ALTER TABLE tb_question_answer ADD COLUMN type int(2) DEFAULT '0' COMMENT '类型（0:3.5 1:4.0）';

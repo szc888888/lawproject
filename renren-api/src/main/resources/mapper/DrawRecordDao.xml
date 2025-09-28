@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.dao.DrawRecordDao">
+
+    <resultMap type="io.renren.entity.DrawRecordEntity" id="drawRecordMap">
+        <result property="id" column="id"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="type" column="type"/>
+        <result property="createTime" column="create_time"/>
+        <result property="prompt" column="prompt"/>
+        <result property="negativePrompt" column="negative_prompt"/>
+        <result property="userId" column="user_id"/>
+    </resultMap>
+    <select id="getListByUser" resultType="io.renren.entity.DrawRecordEntity">
+        select * from tb_draw_record where user_id = #{value} order by create_time desc limit 100
+    </select>
+
+
+</mapper>

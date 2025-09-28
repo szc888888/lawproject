@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.dao.OrderDao">
+
+	<!-- 根据传入条件查询用户充值记录 -->
+    <select id="getOrderList" resultType="io.renren.entity.OrderEntity" parameterType="map">
+		select
+			id,
+			user_id,
+			user_name,
+			commodity_name,
+			commodity_type,
+			pay_type,
+			order_code,
+			recharge_amount,
+			order_type,
+			found_time,
+			over_time,
+			commission
+		from
+		tb_order where user_id = #{userId} 
+	<if test="orderType != null and orderType != '' ">
+		 and order_type = #{orderType}
+	</if>
+		order by found_time desc
+    </select>
+    
+    <!-- 根据订单号查询订单数据 -->
+    <select id="getOrderByCode" resultType="io.renren.entity.OrderEntity" parameterType="string">
+		select
+		
+			*
+		from
+		
+		tb_order where order_code = #{orderCode} and order_type != 2
+    </select>
+    
+</mapper>

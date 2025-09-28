@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.dao.SpeciesListDao">
+    
+    <!-- 根据传入条件查询用户的提问次数流水 -->
+    <select id="getByUserIdSpeciesList" resultType="io.renren.entity.SpeciesListEntity" parameterType="map">
+		select 
+		
+			id,
+			userid,
+			species,
+			create_time,
+			msg_content,
+			type
+		
+		 from 
+		 
+		 tb_species_list where 
+		 
+		 userid = #{userId} and type = 5
+		 
+		 and to_days(create_time) = to_days(now());
+    </select>
+	<select id="querySpeciesListByUserId" resultType="io.renren.entity.SpeciesListEntity">
+		select
+			*
+		 from
+
+		 tb_species_list where
+
+		 userid = #{userId}  ORDER BY
+	create_time DESC limit 300
+	</select>
+
+
+</mapper>

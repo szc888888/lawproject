@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.dao.WithdrawalDao">
+
+	<!-- 根据用户ID查询用户所有的提现记录 -->
+    <select id="getWithdrawalList" resultType="io.renren.entity.WithdrawalEntity" parameterType="map">
+		select
+			id,
+			user_id,
+			user_name,
+			withdrawal_money,
+			reality_money,
+			front_vacancies,
+			behind_vacancies,
+			service_charge,
+			service_charge_scale,
+			type,
+			status,
+			content,
+			time
+		from
+		
+		tb_withdrawal where user_id = #{userId} 
+		
+		order by time desc
+    </select>
+</mapper>
