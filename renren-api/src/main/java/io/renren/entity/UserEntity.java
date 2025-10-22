@@ -53,6 +53,10 @@ public class UserEntity {
 	 */
 	private Integer status;
 	/**
+	 * 1:普通用户 2 律师用户
+	 */
+	private Integer type;
+	/**
 	 * 封禁原因
 	 */
 	private String lockReason;

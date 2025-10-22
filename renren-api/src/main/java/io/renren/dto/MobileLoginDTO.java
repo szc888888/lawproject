@@ -22,5 +22,8 @@ public class MobileLoginDTO {
     @ApiModelProperty(value = "邀请ID")
     private Long pid;
 
+    @ApiModelProperty(value = "用户类型")
+    private int type;
+
 
 }

@@ -362,7 +362,7 @@ public class CommonService {
 		System.out.println(minmaxAddress+"/v1/chat/completions");
 		try {
 			HttpResponse response = HttpRequest.post(minmaxAddress+"/v1/chat/completions")
-					.header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjAyNTE0NzMsInVzZXIiOnsiaWQiOiIzODE3OTYyNDc4OTE0NzY0ODUiLCJuYW1lIjoi5o6i57Si6ICFIiwiYXZhdGFyIjoiaHR0cHM6Ly9jZG4uaGFpbHVvYWkuY29tL3Byb2QvMjAyNS0wMy0xMi0yMC91c2VyX2F2YXRhci8xNzQxNzgxNTUxMDQ1MzY0NjgwLTIxMTE5MTg3OTQ4NjY2ODgwMW92ZXJzaXplLnBuZyIsImRldmljZUlEIjoiMzk1OTkxNjY0OTY3NjA2MjcyIiwiaXNBbm9ueW1vdXMiOmZhbHNlfX0.6Fmpxur47vBEJMyWGOTzVjYwWOhxR19GECKd0z0xkN8")
+					.header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjM3OTg4NzMsInVzZXIiOnsiaWQiOiIzODE3OTYyNDc4OTE0NzY0ODUiLCJuYW1lIjoi5o6i57Si6ICFIiwiYXZhdGFyIjoiaHR0cHM6Ly9jZG4uaGFpbHVvYWkuY29tL3Byb2QvMjAyNS0wMy0xMi0yMC91c2VyX2F2YXRhci8xNzQxNzgxNTUxMDQ1MzY0NjgwLTIxMTE5MTg3OTQ4NjY2ODgwMW92ZXJzaXplLnBuZyIsImRldmljZUlEIjoiNDM0MDU0NjkxMTIyMDY1NDEyIiwiaXNBbm9ueW1vdXMiOmZhbHNlfX0.fXF4aoe7uYOmpjpbeQJku7raKQY6CYfU3mb0sqflg18")
 					.header("Content-Type", "application/json")
 					.body(json.toString())
 					.execute();
@@ -744,6 +744,7 @@ public class CommonService {
 			userEntity = new UserEntity("用户"+SundryUtils.getCardTailNum(dto.getMobile()),null,USER_HEAD_URL,msgCount,dto.getPid(),new BigDecimal(invite_rebate_one),new BigDecimal(invite_rebate_two));
 			userEntity.setUsername(dto.getMobile());
 			userEntity.setMobile(dto.getMobile());
+			userEntity.setType(dto.getType());
 			if(dto.getPid() != null){
 				//查询这个用户有没有上级 有就绑定好爷爷辈ID
 				UserEntity gpUser = userService.selectById(dto.getPid());

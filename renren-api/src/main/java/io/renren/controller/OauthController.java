@@ -12,11 +12,13 @@ package io.renren.controller;
 import cn.hutool.core.util.StrUtil;
 import io.renren.annotation.Login;
 import io.renren.commom.CommonService;
+import io.renren.common.exception.RenException;
 import io.renren.common.utils.Result;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.dto.LoginDTO;
 import io.renren.dto.MobileLoginDTO;
 import io.renren.dto.WeChatLoginDTO;
+import io.renren.entity.UserEntity;
 import io.renren.service.SysParamsService;
 import io.renren.service.TokenService;
 import io.renren.service.UserService;
@@ -86,7 +88,25 @@ public class OauthController {
     public Result<UserVo> smsLogin(@RequestBody MobileLoginDTO dto){
         //表单校验
         ValidatorUtils.validateEntity(dto);
+        UserEntity userEntity = userService.getByMobile(dto.getMobile());
+        if (userEntity!=null) {
+            if (userEntity.getType()==2){
+                throw new RenException("律师需要登陆律师端APP");
+            }
+        }
         return commonService.smsLogin(dto);
     }
-
+    @PostMapping("lawerLogin")
+    @ApiOperation("验证码登录注册")
+    public Result<UserVo> lawerLogin(@RequestBody MobileLoginDTO dto){
+        //表单校验
+        ValidatorUtils.validateEntity(dto);
+        UserEntity userEntity = userService.getByMobile(dto.getMobile());
+        if (userEntity!=null) {
+            if (userEntity.getType()==1){
+                throw new RenException("用户需要登陆用户端APP");
+            }
+        }
+        return commonService.smsLogin(dto);
+    }
 }

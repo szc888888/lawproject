@@ -84,6 +84,7 @@
 		    <artifactId>alipay-sdk-java</artifactId>
 		    <version>4.9.124.ALL</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.bytedeco/javacv -->
 <!--		<dependency>-->
 <!--			<groupId>org.bytedeco</groupId>-->
