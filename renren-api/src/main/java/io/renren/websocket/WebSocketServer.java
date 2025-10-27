@@ -157,17 +157,21 @@ public class WebSocketServer {
         String msg = jsonObject.getString("msg");
         String conversationId = jsonObject.getString("conversationId");
 
-        String type = jsonObject.getString("type");
+        Integer type = jsonObject.getInteger("type");
         List<Message> history = jsonObject.getObject("history", new TypeReference<List<Message>>() {});
 
         Boolean gptType = jsonObject.getObject("gptType", boolean.class);
         if (gptType == null) {
             gptType = false;
         }
-        if (StringUtils.isBlank(type)) {
-            type = "0";
+//        if (StringUtils.isBlank(type)) {
+//            type = "0";
+//        }
+        if (type==2){
+
+        }else {
+            commonService.sendMsgByDeepseek(conversationId, history, modelId, msg, this);
         }
-        commonService.sendMsgByDeepseek(conversationId, history, modelId, msg, this);
     }
 
     //        if(type.equals("0")){

@@ -1,7 +1,10 @@
 package io.renren.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.renren.common.utils.Result;
+import io.renren.dto.QuestionSampleDTO;
 import io.renren.entity.QuestionSampleEntity;
 import io.renren.service.QuestionSampleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +34,23 @@ public class QuestionSampleController {
     /**
      * 分页查询
      */
-    @GetMapping
-    public ResponseEntity<IPage<QuestionSampleEntity>> page(
-            @RequestParam(value = "page", defaultValue = "1") long page,
-            @RequestParam(value = "size", defaultValue = "10") long size) {
 
-        Page<QuestionSampleEntity> pager = new Page<>(page, size);
-        IPage<QuestionSampleEntity> result = questionSampleService.page(pager);
-        return ResponseEntity.ok(result);
+//    public Result page(
+//            @RequestParam(value = "page", defaultValue = "1") long page,
+//            @RequestParam(value = "size", defaultValue = "10") long size) {
+//    @GetMapping
+    @PostMapping("queryHighFrequencyQuestions")
+    public Result page(@RequestBody
+                       QuestionSampleDTO questionSampleDTO) {
+        Page<QuestionSampleEntity> pager = new Page<>(questionSampleDTO.getPage(), questionSampleDTO.getSize());
+
+        // 创建查询条件
+        QueryWrapper<QuestionSampleEntity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.isNull("parent_id").orderByAsc("code"); ; // 只查询 parentId 为 null 的记录
+
+        IPage<QuestionSampleEntity> result = questionSampleService.page(pager, queryWrapper);
+//        return ResponseEntity.ok(result);
+        return new Result().ok(result);
     }
 
     /**

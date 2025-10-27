@@ -47,6 +47,10 @@ public class QuestionSampleEntity implements Serializable {
     @TableField("name")
     private String name;
 
+    @TableField("icon")
+    private String icon;
+
+
     /**
      * 创建时间，自动填充（插入时）
      */
